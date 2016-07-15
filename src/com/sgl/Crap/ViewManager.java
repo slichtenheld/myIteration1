@@ -1,4 +1,4 @@
-package com.sgl.View;
+package com.sgl.Crap;
 
 import com.sgl.State;
 import com.sgl.Tickable;
@@ -55,7 +55,7 @@ public class ViewManager extends JFrame implements State, Runnable, Tickable {
         setLocationRelativeTo(null);
         // canvas used to paint images onto frame
         getContentPane().setLayout(new BorderLayout());
-        // move to View manager?
+        // move to Crap manager?
         pack();
         setVisible(true);
     }

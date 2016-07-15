@@ -1,4 +1,4 @@
-package com.sgl.View;
+package com.sgl.Crap;
 
 import com.sun.prism.Graphics;
 
