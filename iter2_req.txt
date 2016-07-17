@@ -1,0 +1,80 @@
+Project overview: Iteration 2
+This iteration's primary objective is delivering a piece of software that implements a strong object-oriented design. In this iteration, I expect you to apply all the techniques and OO principles covered in class (and assigned readings) up through the end of the lectures on Page-Jones chapter 10 inclusive [yes, I know we are in chapter 9 as of the date this was posted, but we will cover them long before the due date]. Concepts introduced after that point need not be reflected in your work—though you are free to choose to incorporate them.
+Don't be afraid to ditch most (or even all) of your work from iteration 1—it is often faster in the long run to start fresh and apply the knowledge acquired from the earlier attempts than trying to fix a broken design. Be sure that your model, view, and controller are truly independent and communicate only through a well defined interface.
+Due: start of lecture on Monday, March 23rd
+Requirements from Iteration 1
+All iteration 1 requirements are still in effect.
+Update: load/save game
+Your team may not use Java's serialization mechanism (or the like). The intent was that you design and implement your own mechanism.
+Game play requirements new to Iteration 2
+Entities
+There is one new entity type:
+NPC - (Non-Player Character) may be adversarial or non-hostile (e.g., monsters and villagers).
+Skills
+There are skills that all classes can learn and there are player class specific skills (i.e., unique to that class). On leveling up a player will be awarded a certain number of skill points to distribute to improving her Avatar's skills. Once a skill point has been allocated to a particular skill, it can not be later reallocated. The following skills are required — your team may, of course, have more. The higher a character's skill level, the better the character is at performing the action — at low levels, the chance of failure is high.
+bind wounds - heals some damage—the amount depends on the skill level.
+bargain - an avatar with a high bargain skill will get better prices when buying/selling items.
+observation - an avatar with a high observation skill will get more and more accurate hints about the abilities/stats of NPCs (e.g., how much damage the last blow did, how much life force is left, immunity to fire, etc.). Note: with a low skill, the information "observed" may be very inaccurate! [General principle: at high skill levels, rather than revealing everything about an NPC, just a couple of random—but useful—things would be accurately observed—though even at very high skill levels, there should always be a small chance of making a mistaken observation!] The accuracy of an observation is affected by distance.
+Smasher specific skills
+A Smasher can attempt to wield any weapon she has acquired; however, the probability of a successful hit and the amount of damage dealt will depend on her skill level in using that type of weapon.
+one-handed weapon - the higher this skill, the better a Smasher will be when fighting with a one-handed weapon. [Note: one-handed weapons combat is medium damage per blow, medium speed attack]
+two-handed weapon - self descriptive [Note: two-handed weapons combat is high damage per blow, low speed attack]
+brawling - fighting with firsts and feet (note: this includes brass-knuckles, spiked gloves, etc. should you wish to have such items in your game). [Note: unarmed combat is low damage per blow, high speed attack]
+Summoner specific skills
+A Summoner can attempt to cast any type of spell that she has learned; however, the probability of the spell succeeding and the strength of its effect will depend on her skill level in casting that type of spell.
+enchantment - magic that focuses of influencing another's behavior (e.g, make an NPC fall asleep, be move favorably predisposed to the character, etc.); note: failed enchantment attempts will make the target hostile.
+boon - magic that heals, temporarily grants (partial) immunities and defensive bonuses, improves stats, and other beneficial things.
+bane - magic that does damage or harm.
+staff - out of mana? As a last resort one can try whacking an adversary with one's staff.
+Sneak specific skills
+pick-pocket - self descriptive.
+detect & remove trap - the higher this skill the more likely the avatar is to notice a trap; once the trap is detected, she may attempt to remove it — the higher her skill the more likely she is to succeed.
+creep - ability to stealthily move from place to place; movement is slowed while creeping. A successfully creeping character can surprise and back-stab an unwary opponent for extra damage.
+ranged weapon - self descriptive.
+Actions
+An NPC is engaged when the avatar attempts to move onto the space occupied by the NPC — the player will then be presented with a choice of actions. There are four required types of action (though teams are free to implement more):
+Talk
+An attempt is made to engage the NPC in conversation; the NPC may be willing to talk and perhaps even engage in trade (e.g., a shopkeeper), or may want to be left alone, or just attack in response.
+Attack
+Combat mechanics are left up to each team to determine. However both skills and (derived) stats must be taken into account.
+Use skill
+The avatar may attempt to use a skill (e.g., a Sneak might attempt to pick-pocket an NPC).
+Use item
+The avatar may attempt to use an item.
+Spells, weapons, items, etc.
+A variety of spells [a minimum of 3 for each Summoner skill type — the more powerful the spell, the more mana it should consume], weapons [a minimum of 3 for each Smasher skill type, plus 3 ranged weapons for Sneaks], and other items (potions, magic rings, armor, etc.) are required. Each team is free to devise a set that is consistent with their game's theme. Usage is restricted by class (e.g., only Summoners are allowed to cast spells).
+Distance
+With the additional game play features in this iteration, we must now account for things happening in the distance, ranged attacks, &c.
+Concept: influence radius
+How far an entity's can see, attack, &c. is based on what we'll generically refer to here as an influence radius, which defines a set of tiles centered on that entity. As a general principle, accuracy and damage decrease with increasing distance (e.g., less likely to notice a concealed unit, harder to hit a target, blast does less damage, &c.). The following diagram illustrates the relationship to map tiles of three kinds of ranged effects which you will be implementing:
+linear effects (e.g., bullet) straight line in the direction the unit is facing
+angular effects (e.g., shotgun blast) approximates an expanding 90° arc centered on the direction the unit is facing
+radial effects (e.g., bomb blast) 360° expanding effect (facing independent)
+
+User interface requirements new to Iteration 2
+Area viewport
+The area viewport shall remain centered on the character—i.e., when the player moves, the avatar will remain centered in the area viewport and the map will automatically scroll under her.
+Map
+Teleport area effect
+A teleport area effect will move the avatar to either another position on the same map or to another map (e.g., moving into a doorway may take one to another map representing the interior of a building).
+Traps
+Traps should not be visible unless successfully detected (see detect & remove trap skill above).
+Player configurable controls
+Support player configurable controls. For example, a player may wish to use the [u]-key to move up rather than the default [numeric keypad 8]-key. Custom configurations should be savable to/loadable from files. Each player shall be able to have unique control configurations.
+Goals and optional features
+Goals
+The goals for this iteration include:
+Skills
+Level-up: skill point assignment
+Avatar - NPC interaction
+combat
+dialog
+buy/sell items
+use of item/skill on an NPC
+Multiple entity, spell, weapon, item, etc. types
+Traps and teleport area effects
+Distance and influence radius
+Configurable user interface
+Optional features
+Should you choose to implement other game play oriented features, be sure that you have all the required features implemented first!
+This website is an original work, Copyright © 2015 by Dave Small. All rights reserved.

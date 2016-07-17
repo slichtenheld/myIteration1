@@ -1,0 +1,113 @@
+Project Overview: Iteration 1
+You have chosen to produce an RPG (role playing game). Our goal for this first iteration is to develop a sound engine upon which an entertaining game can be built later. Fancy graphics and a storyline are the very last thing you should spen time on.
+Due: Monday 2/9
+Logical Game Elements
+The model for this iteration shall incorporate several logical game elements—entities, items, and maps—which are described below.
+Entities
+An entity is a mobile thing which has a specific location and the ability to relocate itself. Entities are characterized by stats and are broadly categorized as either player-controlled or computer-controlled. This iteration shall define the following entities:
+Avatar - represents the player
+Occupation
+An entity's occupation will define her abilities. This iteration shall define the following occupations:
+Smasher - specialized in hand-to-hand combat
+Summoner - specialized in spell-casting (or, if you prefer, "technologies so advanced as to be indistinguishable from magic")
+Sneak - specialized in ranged weapons, evading detection, finding/removing traps, &c.
+Stats
+Stats, short for statistics, are a set of quantified characterizations of an entity's abilities and status. There are two types of stats: primary and derived. This iteration shall define the following stats:
+Primary stats
+Lives left - how many more times the entity can die before the game is over.
+Strength - primary attribute of the Smasher
+Agility - primary attribute of the Sneak
+Intellect - primary attribute of the Summoner
+Hardiness - measures how resistant a character is to physical abuse
+Experience - measures how much an entity knows about her occupation; earned by adventuring, solving problems, &c.
+Movement - the maximum distance an entity may move over ideal terrain per unit time
+Derived stats
+Level - measured how "good" the entity is at her occupation; based on experience
+Life - how close the entity is to death; based upon hardiness and level
+Mana - how much energy the entity has to fuel her spells; based on intellect and level
+Offensive rating - damage dealt when attacking; based on the equipped weapon, strength, and level
+Defensive rating - how difficult it is to successfully attack this entity; based on agility and level
+Armor rating - armor absorbs a fixed amount of damage; based on equipped armor and hardiness
+Inventory
+An inventory is a set of items carried by an entity. Items may be added to or dropped from the inventory and items in the inventory may be equipped.
+Equipped items
+Equipped items are those which an entity is currently wearing/bearing. Equipped items (in most cases) modify the entity's stats. When an item is unequipped, it is returned to the inventory.
+Navigation and Interaction
+Entities may move—when not blocked (e.g., by enemy entities) or otherwise constrained—in any of 8 directions: N, NE, E, SE, S, SW, W, and NW. The entity shall be assumed to face the direction of its last (attempted) movement. Interaction shall be accomplished by an (attempt) to move into the tile containing the interactive item.
+Items
+An item is an immobile thing which has a specific location. This iteration shall define the following items:
+Take-able Item - added to inventory on touch
+One-shot Item - activated and removed from map when touched by an Entity
+Interactive Item - (potentially) activated on touch; activation may require possession of a specific item or completion of a sequence of actions (e.g., quest or puzzle)
+Obstacle - makes tile permanently impassable
+Maps
+Maps consist of a rectangular grid of locations. Discrete locations in the game world are geometrically square (but may be visually represented as diamonds, should you wish to use an isometric view). Each location has a terrain type, may contain entities and items, and may be associated with an area-effect.
+Terrain
+Terrains indicate the physical characteristics of the "landscape." This iteration shall define the following terrain types:
+Grass - all first iteration entities can pass
+Water - no first iteration ground entities can pass
+Mountains - no first iteration entities can pass
+If those names are inconsistent with your groups theme, you may choose other terrain names as long as functionally equivalent restrictions on traversabilty are implemented. For example, a space-based theme, may use names such as such as normal space, asteroid field, nebula, and supernova.
+Area-Effects
+Area-effects are processes that are automatically triggered when an entity enters a place. This iteration shall define the following area-effects:
+Take damage
+Heal damage
+Instant death
+Level-up (earn enough experience to advance to next level)
+Viewports
+The player's interface shall consist of a view through two viewports—a categorization of the kind of data that shall be represented—into the game world: an area viewport and status viewport.
+Area viewport
+An area is a representation of the visible subset of the map in which game play is happening. Each of the visible locations is represented by a tile, which depicts the terrain type (potentially decorated with a decal), and the entity or item, if any, at that location.
+Decal
+Decals augment the terrain and primarily serve as eye-candy. They do not intrinsically affect game play—though one may be used to mark a tile to indicate an area-effect, &c. This iteration shall define the following decal types:
+Red Cross
+Skull and Crossbones
+Gold Star
+Status viewport
+A representation of the player's current entity's stats.
+Goals and Anti-goals
+Goals
+The goals for this iteration include:
+Avatar creation
+Level-up
+Entity movement and interaction with terrain
+Inventory management and ability to (un)equip items
+Load/save game
+Anti-goals
+The goals are oriented toward building infrastructure. Therefore, you do not need to focus on game-play elements such as (but not limited to):
+Combat
+Multiple entity or weapon types
+&c.
+Architectural Guidelines
+The architecture shall be based upon the MVC (model-view-controller) pattern. This pattern breaks an application into three encapsulated subsystems. The model is the heart of the system and contains the data and program logic. A model is independent from and therefore can be presented by multiple views (e.g., consider data in a spreadsheet that can be presented as a table, or a graph, or an XML document). A controller—also independent from the model—is used to modify the model's state (e.g., cutting and pasting text from a document) or manipulate the view (e.g., scrollbars change what is visible, but don't change the fundamental data). A controller could be variously implemented as something that interprets input from a keyboard, mouse, joystick, network, another program, etc. Since the three subsystems are loosely coupled and only communicate through a well defined interface, the advantage of using the MVC is that it allows variations on a subsystem to be interchanged without affecting the correct operation of the other subsystems.
+Model
+The model shall manage and manipulate the logical game elements identified in this document.
+View
+You have the option of developing an ASCII text mode or Java2D graphic (or, if you are really ambitious, Java3D, jogl, etc.) view based on the screens previously described. [Note: as mentioned the first day of class, the choice of display technology won't affect your grade. What you do with the technology—in terms of creating a well designed piece of software that meets the requirements—is what is important!] The map shall be larger than the area viewport—which will automatically scroll to keep the player's currently selected unit/structure in the center of the area viewport as she moves around.
+Controller
+The controller shall be based on input from the keyboard. Movement is effected with the numeric keypad:
+NW   N   NE
+  \  |  /
+   7 8 9
+ W-4   6-E
+   1 2 3
+  /  |  \
+SW   S   SE
+References
+As per the syllabus, “You may freely use any code presented in the textbook, provided by your instructor, or authored by yourself. You are prohibited from using code from any other source without written permission from the instructor.” Since the textbooks contain no code and I will only discuss techniques, that means you are the sole source of code—and designs—for the project. Because the purpose of the project is for you to “learn by doing,” I most emphatically do not want you “appropriating” designs or implementations. That said, I do believe there is value in seeing how others have used APIs and solved certain classes of problems. Here is a short list of references you may find useful:
+The books recommended in the syllabus
+Developing Games in Java by David Brackeen
+Core Techniques and Algorithms in Game Programming by Daniel Sanchez-Crespo Dalmau
+AI Game Development by Alex Champandard
+Game Architecture and Design by Rollings & Morris
+Java Graphics and Gaming
+Sun's The Java Tutorial
+Sun's Core Java Technologies Tech Tips
+Professional Java Game Development Tutorial: From the Game Developers Conference, 2004
+Model-View-Controller — OO Tips
+Model-View-Controller Pattern — eNode
+Building Graphical User Interfaces with the MVC Pattern — Joseph Bergin
+To be clear: by providing the preceding list, I am not giving you permission to incorporate the linked code or designs in your project. There is a line — do not cross it! If you have any doubts, talk with me first!
+Modifications
+This document is subject to revision as needed. All modifications will be noted in this section.
+This website is an original work, Copyright © 2015 by Dave Small. All rights reserved.
