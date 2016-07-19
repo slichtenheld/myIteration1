@@ -10,11 +10,11 @@ package com.sgl.stateMachine;
 
 public interface State {
 
-    public void create(StateTransition stateTransition);
+    void create(StateTransition stateTransition);
 
-    public void setStateMachine(StateTransition stateTransition);
+    void setStateMachine(StateTransition stateTransition);
 
-    public void remove(StateTransition stateTransition);
+    void remove(StateTransition stateTransition);
 
-    public void kill(StateTransition stateTransition);
+    void kill(StateTransition stateTransition);
 }

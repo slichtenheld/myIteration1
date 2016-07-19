@@ -8,9 +8,9 @@ package com.sgl.stateMachine;
 //
 // Abstract class to create empty States
 
-public abstract class StateFactory {
-
-    public static State createState(){
-        return new State();
-    }
-}
+//public abstract class StateFactory {
+//
+//    public static State createState(){
+//        return new State();
+//    }
+//}

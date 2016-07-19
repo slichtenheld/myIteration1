@@ -18,8 +18,8 @@ public class Engine extends Thread{
     private String name;
     private TimeTracker timeTracker;
     private List<Tickable> tickList;
-    private boolean running;
-    private boolean paused;
+    private boolean running = true;
+    private boolean paused = false;
 
 
     public Engine(String name, long tickRate){
@@ -29,17 +29,35 @@ public class Engine extends Thread{
     }
 
 
+    public void addTickable (Tickable tickable) {
+        tickList.add(tickable);
+    }
+
+    public void pause(){
+        System.out.println(name +" thread paused");
+        paused = true;
+    }
+
+    public void unpause(){
+        System.out.println(name +" thread unpaused");
+        paused = false;
+    }
+
+    public void kill(){
+        System.out.println(name +" thread killed");
+        running = false;
+    }
+
+
+
     @Override
     public void run() {
         this.setName(name);
-        running = true;
-        paused = false;
-        System.out.println("Starting Thread");
+        System.out.println("Starting Thread: " + name);
 
         while(running){
             while(!paused){
                 timeTracker.start();
-                System.out.println("\n==> starting to tick through objects....");
                 tickList.forEach((temp) -> {
                     temp.tick();
                 });
