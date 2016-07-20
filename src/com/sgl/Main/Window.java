@@ -1,4 +1,4 @@
-package com.sgl;
+package com.sgl.Main;
 
 import javax.swing.*;
 import java.awt.*;

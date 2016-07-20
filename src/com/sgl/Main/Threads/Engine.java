@@ -1,4 +1,6 @@
-package com.sgl;
+package com.sgl.Main.Threads;
+
+import com.sgl.Main.Tickable;
 
 import java.util.ArrayList;
 import java.util.List;

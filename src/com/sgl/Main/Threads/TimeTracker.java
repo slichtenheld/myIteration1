@@ -1,4 +1,4 @@
-package com.sgl;
+package com.sgl.Main.Threads;
 
 /**
  * Created by sgl on 7/14/16.

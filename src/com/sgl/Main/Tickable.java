@@ -1,4 +1,4 @@
-package com.sgl;
+package com.sgl.Main;
 
 /**
  * Created by sgl on 4/24/16.
