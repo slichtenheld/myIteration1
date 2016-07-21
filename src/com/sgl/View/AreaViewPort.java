@@ -1,27 +1,35 @@
 package com.sgl.View;
 
-import com.sgl.Main.SquareTest;
 import com.sgl.Main.Tickable;
+import com.sgl.Model.Entity;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by slichtenheld on 7/19/2016.
  */
 public class AreaViewPort extends JPanel implements Tickable {
 
-    int x = 0; int y =0;
-
-    SquareTest squareTest;
+    private List<Entity> entityList;
 
     public AreaViewPort(){
         this.setFocusable(true);
-        this.squareTest= new SquareTest("test",this);
+        entityList = new ArrayList<>(5);
+    }
+
+    public void addEntity(Entity entity){
+        entityList.add(entity);
     }
 
     @Override
     public void tick() {
+        // FIXME: DEBUGGING PURPOSES
+//        entityList.forEach((temp) -> {
+//            System.out.println(temp.getName());
+//        });
         repaint();
     }
 
@@ -35,7 +43,10 @@ public class AreaViewPort extends JPanel implements Tickable {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.setColor(Color.black);
-        g2d.fillRect(squareTest.getData(),squareTest.getData(),100,100);
+        entityList.forEach((temp) -> {
+            g2d.fillRect(temp.getX(),temp.getY(),25,25);
+        });
+
 
 
         g2d.dispose();

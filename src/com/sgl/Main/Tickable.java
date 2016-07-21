@@ -5,5 +5,6 @@ package com.sgl.Main;
  */
 public interface Tickable {
 
-    public abstract void tick();
+    void tick();
+
 }
